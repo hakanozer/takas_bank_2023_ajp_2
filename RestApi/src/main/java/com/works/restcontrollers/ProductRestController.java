@@ -25,6 +25,7 @@ public class ProductRestController {
         return productService.list();
     }
 
+
     @DeleteMapping("/delete/{pid}")
     public ResponseEntity delete( @PathVariable String pid ) {
         return productService.delete(pid);
