@@ -22,9 +22,9 @@ public class ProductRestController {
 
     @GetMapping("/list")
     public ResponseEntity list() {
+        System.out.println("Mapping list");
         return productService.list();
     }
-
 
     @DeleteMapping("/delete/{pid}")
     public ResponseEntity delete( @PathVariable String pid ) {
