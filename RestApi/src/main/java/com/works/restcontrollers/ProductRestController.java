@@ -31,4 +31,9 @@ public class ProductRestController {
         return productService.delete(pid);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody @Valid Product product) {
+        return productService.update(product);
+    }
+
 }

@@ -66,4 +66,20 @@ public class ProductService {
         }
     }
 
+    public ResponseEntity update( Product product ) {
+        Map<REnum, Object> hm = new LinkedHashMap<>();
+        boolean status = productRepository.existsByPidEquals(product.getPid());
+        if ( status ) {
+            productRepository.saveAndFlush(product);
+            hm.put(REnum.status, true);
+            hm.put(REnum.result, product);
+        }else {
+            hm.put(REnum.status, false);
+            hm.put(REnum.message, "No Product Row PID: " + product.getPid() );
+        }
+
+        return new ResponseEntity(hm, HttpStatus.OK);
+    }
+
+
 }

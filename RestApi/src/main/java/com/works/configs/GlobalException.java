@@ -3,6 +3,7 @@ package com.works.configs;
 import com.works.utils.REnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,6 +19,14 @@ public class GlobalException {
         Map<REnum, Object> hm = new LinkedHashMap<>();
         hm.put(REnum.status, false);
         hm.put(REnum.errors, parseError(ex.getFieldErrors()) );
+        return new ResponseEntity(hm, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity httpMessageNotReadable( HttpMessageNotReadableException ex ) {
+        Map<REnum, Object> hm = new LinkedHashMap<>();
+        hm.put(REnum.status, false);
+        hm.put(REnum.errors, ex.getMessage() );
         return new ResponseEntity(hm, HttpStatus.BAD_REQUEST);
     }
 
