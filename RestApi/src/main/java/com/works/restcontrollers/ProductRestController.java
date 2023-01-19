@@ -21,9 +21,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity list() {
-        System.out.println("Mapping list");
-        return productService.list();
+    public ResponseEntity list( @RequestParam(defaultValue = "0") int page ) {
+        return productService.list(page);
     }
 
     @DeleteMapping("/delete/{pid}")
