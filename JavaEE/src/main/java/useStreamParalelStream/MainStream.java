@@ -26,6 +26,6 @@ public class MainStream {
 }
 
 /*
-stream bettween : 103184
-paralel bettween : 175
+stream bettween : 103.184
+paralel bettween : 13.233
  */
